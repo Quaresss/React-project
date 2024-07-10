@@ -1,0 +1,49 @@
+[
+    {
+        "title": "Test",
+        "price": 150,
+        "rating": 0,
+        "types": 0,
+        "id": 1,
+        "category": 0,
+        "sizes": 0
+    } ,
+    {
+        "title": "Test2",
+        "price": 1500,
+        "rating": 0,
+        "types": 0,
+        "id": 2,
+        "category": 0,
+        "sizes": 0
+        
+    } ,
+    {
+        "title": "Test3",
+        "price": 15000,
+        "rating": 0,
+        "types": 0,
+        "id": 3,
+        "category": 0,
+        "sizes": 0
+    } ,
+    {
+        "title": "Test4",
+        "price": 150000,
+        "rating": 0,
+        "types": 0,
+        "id": 4,
+        "category": 0,
+        "sizes": 0
+    } ,
+    {
+        "title": "Test5",
+        "price": 1500000,
+        "rating": 0,
+        "types": 0,
+        "id": 5,
+        "category": 0,
+        "sizes": 0
+    } 
+]
+    
