@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CartItemType, addItem } from '../../redux/slices/cartSlice';
+import { CartItemType, additem } from '../../store/actions/cart';
 import type { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
 
-type ItemProps = {
+type itemProps = {
   id: number;
   title: string;
   types: Array<number>;
@@ -12,14 +12,14 @@ type ItemProps = {
   price: number;
 };
 
-const Item: React.FC<ItemProps> = ({ id, title, price, types, sizes }) => {
+const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
   const [activeTypes, setActiveTypes] = React.useState<number>(0);
   const [activeSizes, setActiveSizes] = React.useState<number>(0);
 
   const type = ['Свойство №1', 'Свойство №2', 'Свойство №3'];
   const size = ['Размер №1', 'Размер №2', 'Размер №3'];
 
-  const cartItem = useSelector((state: RootState) =>
+  const cartitem = useSelector((state: RootState) =>
     state.cart.items.find((obj: any) => {
       obj.id === id;
     }),
@@ -27,9 +27,9 @@ const Item: React.FC<ItemProps> = ({ id, title, price, types, sizes }) => {
 
   const dispatch = useDispatch();
 
-  const addedCount = cartItem ? cartItem.count : 0;
+  const addedCount = cartitem ? cartitem.count : 0;
 
-  console.log(cartItem)
+  console.log(cartitem);
 
   const onClickAdd = () => {
     const item: CartItemType = {
@@ -40,18 +40,18 @@ const Item: React.FC<ItemProps> = ({ id, title, price, types, sizes }) => {
       size: size[activeSizes],
       count: 0,
     };
-    dispatch(addItem(item));
+    dispatch(additem(item));
   };
 
   return (
-    <div className="pizza-block-wrapper">
-      <div className="pizza-block">
+    <div className="item-block-wrapper">
+      <div className="item-block">
         <Link to={`/items/${id}`}>
-          <img className="pizza-block__image" src="https://gdr.one/simg/400" />
+          <img className="item-block__image" src="https://gdr.one/simg/400" />
         </Link>
 
-        <h4 className="pizza-block__title">{title}</h4>
-        <div className="pizza-block__selector">
+        <h4 className="item-block__title">{title}</h4>
+        <div className="item-block__selector">
           <ul>
             {types.map((_, i) => (
               <li
@@ -75,8 +75,8 @@ const Item: React.FC<ItemProps> = ({ id, title, price, types, sizes }) => {
             ))}
           </ul>
         </div>
-        <div className="pizza-block__bottom">
-          <div className="pizza-block__price">{price} руб.</div>
+        <div className="item-block__bottom">
+          <div className="item-block__price">{price} руб.</div>
           <div onClick={onClickAdd} className="button button--outline button--add">
             <svg
               width="12"
@@ -98,4 +98,4 @@ const Item: React.FC<ItemProps> = ({ id, title, price, types, sizes }) => {
   );
 };
 
-export default Item;
+export default item;

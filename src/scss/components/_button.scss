@@ -11,7 +11,6 @@
   transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
   border: 1px solid transparent;
   @include noselect();
-  
 
   &,
   span {
@@ -33,7 +32,7 @@
     background-color: darken($orange, 12%);
     transform: translateY(1px);
   }
- 
+
   &--circle {
     display: flex;
     align-items: center;
@@ -42,7 +41,7 @@
     height: 32px;
     min-width: 32px;
     padding: 0;
-    border-width: 2px; 
+    border-width: 2px;
   }
 
   &--black {
@@ -52,7 +51,6 @@
     &:active {
       background-color: lighten($color: $black, $amount: 10);
     }
-   
   }
 
   &--outline {

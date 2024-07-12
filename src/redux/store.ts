@@ -9,7 +9,7 @@ export const store = configureStore({
     filter,
     search,
     cart,
-    items
+    items,
   },
 });
 

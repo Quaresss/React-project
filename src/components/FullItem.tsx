@@ -2,8 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const FullItem: React.FC = () => {
-  const [item, setItem] = React.useState<{
+const Fullitem: React.FC = () => {
+  const [item, setitem] = React.useState<{
     title: string;
     price: number;
   }>();
@@ -12,16 +12,16 @@ const FullItem: React.FC = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    async function fetchItem() {
+    async function fetchitem() {
       try {
         const { data } = await axios.get('https://847c80a9e47a2b52.mokky.dev/items/' + id);
-        setItem(data);
+        setitem(data);
       } catch (err) {
         alert('Error fetching item');
         navigate('/');
       }
     }
-    fetchItem();
+    fetchitem();
   }, []);
 
   console.log(item);
@@ -38,4 +38,4 @@ const FullItem: React.FC = () => {
   );
 };
 
-export default FullItem;
+export default Fullitem;

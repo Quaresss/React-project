@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearItem, selectCart } from '../redux/slices/cartSlice';
+import { clearitem } from '../store/actions/cart';
+import type { RootState } from '../../src/store/store';
 
 import CartItem from '../components/CartItem';
 import CartEmpty from '../components/CartEmpty';
 
 const Cart: React.FC = () => {
-  const { totalPrice, items } = useSelector(selectCart);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
   const totalCount = items.reduce((sum: any, item: any) => sum + item.count, 0);
   const dispatch = useDispatch();
 
   const onClickClear = () => {
     if (window.confirm('Are you sure you want to remove?')) {
-      dispatch(clearItem());
+      dispatch(clearitem());
     }
   };
 

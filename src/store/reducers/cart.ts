@@ -1,6 +1,11 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
 import { getCartFromLS } from '../../utils/getCartFromLS';
+
+import { CartActionTypes } from '../actions/cart';
+
+export interface CartState {
+  totalPrice: number;
+  items: CartitemType[];
+}
 
 export type CartitemType = {
   id: number;
@@ -11,21 +16,19 @@ export type CartitemType = {
   count: number;
 };
 
-export interface CartState {
-  totalPrice: number;
-  items: CartitemType[];
-}
-
 const initialState: CartState = {
   totalPrice: 0,
   items: getCartFromLS(),
 };
 
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState,
-  reducers: {
-    additem(state, action: PayloadAction<CartitemType>) {
+const ADD_item = 'cart/additem';
+const MINUS_item = 'cart/minusitem';
+const REMOVE_item = 'cart/removeitem';
+const CLEAR_item = 'cart/clearitem';
+
+const cartReducer = (state = initialState, action: CartActionTypes): CartState => {
+  switch (action.type) {
+    case ADD_item:
       const finditem = state.items.find((obj) => obj.id === action.payload.id);
 
       if (finditem) {
@@ -33,36 +36,42 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }
+
       state.totalPrice = state.items.reduce((sum, obj) => {
         return obj.price * obj.count + sum;
       }, 0);
-    },
+      return { ...state };
 
-    minusitem(state, action: PayloadAction<number>) {
-      const finditem = state.items.find((obj) => obj.id === action.payload);
+    case MINUS_item:
+      const finditemMinus = state.items.find((obj) => obj.id === action.payload);
 
-      if (finditem) {
-        finditem.count--;
+      if (finditemMinus) {
+        finditemMinus.count--;
       }
+
       state.totalPrice = state.items.reduce((sum, obj) => {
         return obj.price * obj.count + sum;
       }, 0);
-    },
+      return { ...state };
 
-    removeitem(state, action: PayloadAction<number>) {
+    case REMOVE_item:
       state.items = state.items.filter((obj) => obj.id !== action.payload);
       state.totalPrice = state.items.reduce((sum, obj) => {
         return obj.price * obj.count + sum;
       }, 0);
-    },
-    clearitem(state) {
+      return { ...state };
+
+    case CLEAR_item:
       state.items = [];
       state.totalPrice = 0;
-    },
-  },
-});
+      return { ...state };
 
-export const selectCart = (state: RootState) => state.cart;
+    default:
+      return state;
+  }
+};
 
-export const { additem, removeitem, clearitem, minusitem } = cartSlice.actions;
-export default cartSlice.reducer;
+// Export reducer as default
+export default cartReducer;
+
+// Action type union

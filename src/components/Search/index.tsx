@@ -1,10 +1,8 @@
 import React from 'react';
-import type { RootState } from '../../redux/store';
+import type { RootState } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearch, clearSearch, setUpdate } from '../../redux/slices/searchSlice';
-
+import { setSearch, clearSearch, setUpdate } from '../../store/actions/search';
 import debounce from 'lodash.debounce';
-
 import styles from './Search.module.scss';
 
 const Search = () => {
@@ -23,9 +21,6 @@ const Search = () => {
     dispatch(setUpdate(event.target.value));
     updateSearch(event.target.value);
   };
-
-
-
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -52,7 +47,7 @@ const Search = () => {
       {update && (
         <svg
           onClick={() => {
-            dispatch(clearSearch(inputRef.current?.focus()));
+            dispatch(clearSearch(), inputRef.current?.focus());
           }}
           className={styles.clearIcon}
           height="512px"

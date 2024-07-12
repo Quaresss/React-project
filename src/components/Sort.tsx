@@ -1,20 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../redux/store';
-import { setSort, setOpen, setClose } from '../redux/slices/filterSlice';
+import type { RootState } from '../store/store';
+import { setSort } from '../store/actions/filter';
 
-type SortItem = {
+type Sortitem = {
   name: string;
   sortProperty: string;
 };
 
 const Sort: React.FC = React.memo(() => {
+  const [open, setOpen] = React.useState<Boolean>(false);
   const dispatch = useDispatch();
-  const { sort, open } = useSelector((state: RootState) => state.filter);
+  const { sort } = useSelector((state: RootState) => state.filter);
 
-  const handlePopupSort = (obj: SortItem) => {
+  console.log(sort);
+
+  const handlePopupSort = (obj: Sortitem) => {
     dispatch(setSort(obj));
-    dispatch(setClose());
+    setOpen(false);
   };
 
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -22,7 +25,7 @@ const Sort: React.FC = React.memo(() => {
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
-        dispatch(setClose());
+        setOpen(false);
       }
     };
     document.body.addEventListener('click', handleClickOutside);
@@ -32,7 +35,7 @@ const Sort: React.FC = React.memo(() => {
     };
   }, []);
 
-  const sortList: SortItem[] = [
+  const sortList: Sortitem[] = [
     { name: 'популяронсти', sortProperty: 'rating' },
     { name: 'цене', sortProperty: 'price' },
     { name: 'алфавиту', sortProperty: 'title' },
@@ -53,7 +56,7 @@ const Sort: React.FC = React.memo(() => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => dispatch(setOpen())}>{sort.name}</span>
+        {<span onClick={() => setOpen(true)}>{sort.name}</span>}
       </div>
       {open && (
         <div className="sort__popup">

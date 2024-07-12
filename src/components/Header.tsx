@@ -1,27 +1,26 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../redux/slices/cartSlice';
+import type { RootState } from '../../src/store/store';
 
 import Search from './Search';
 
 const Header: React.FC = ({}) => {
-  const { totalPrice, items } = useSelector(selectCart);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
   const { pathname } = useLocation();
 
   const totalCount = items.reduce((sum: any, item: any) => sum + item.count, 0);
 
   const isMounted = React.useRef(false);
 
- 
   return (
     <div className="header">
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src="../assets/img/logo.svg" />
+            <img width="38" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" />
             <div>
-              <h1>LEGO</h1>
+              <h1>Магазин</h1>
             </div>
           </div>
         </Link>

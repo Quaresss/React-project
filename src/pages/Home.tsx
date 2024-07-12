@@ -1,9 +1,9 @@
 import React from 'react';
 
-import type { RootState, AppDispatch } from '../redux/store';
+import type { RootState } from '../store/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../redux/slices/filterSlice';
-import { fetchItems } from '../redux/slices/itemsSlice';
+import { setCategoryId } from '../store/actions/filter';
+import { fetchitems } from '../store/actions/items';
 
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -12,28 +12,29 @@ import Skeleton from '../components/Item/Skeleton';
 import NotFound from './NotFound';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
 
-  const { categoryId, sort} = useSelector((state: RootState) => state.filter);
+  const { categoryId, sort } = useSelector((state: RootState) => state.filter);
   const { items, status } = useSelector((state: RootState) => state.items);
   const { search } = useSelector((state: RootState) => state.search);
   const sortType = sort.sortProperty;
 
   const skeleton = [...new Array(10)].map((_, index) => <Skeleton key={index} />);
-  const item = items.map((obj: ItemsProps) => <Card {...obj} key={obj.id} />);
+  const item = items.map((obj: itemsProps) => <Card {...obj} key={obj.id} />);
 
   const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
   }, []);
 
-  const getItems = () => {
+  const getitems = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
-    const searchItems = search ? `&title=*${search}` : '';
+    const searchitems = search ? `&title=*${search}` : '';
 
     dispatch(
-      fetchItems({
+      //@ts-ignore
+      fetchitems({
         category,
-        searchItems,
+        searchitems,
         sortType,
       }),
     );
@@ -42,10 +43,10 @@ const Home: React.FC = () => {
   };
 
   React.useEffect(() => {
-    getItems();
+    getitems();
   }, [categoryId, sortType, search]);
 
-  type ItemsProps = {
+  type itemsProps = {
     id: number;
     title: string;
     types: Array<number>;
@@ -54,6 +55,8 @@ const Home: React.FC = () => {
     category: number;
     rating: number;
   };
+
+  console.log(items);
 
   return (
     <div className="container">
@@ -65,7 +68,6 @@ const Home: React.FC = () => {
       <div className="content__items">
         {status === 'error' ? <NotFound /> : status === 'loading' ? skeleton : item}
       </div>
-      
     </div>
   );
 };

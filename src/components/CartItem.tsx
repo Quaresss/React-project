@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { CartItemType, addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
+import { CartitemType, additem, minusitem, removeitem } from '../redux/slices/cartSlice';
 
-type CartItemProps ={
+type CartitemProps = {
   id: number;
   title: string;
   type: Array<number>;
@@ -11,31 +11,31 @@ type CartItemProps ={
   category: number;
   rating: number;
   count: number;
-}
+};
 
-const CartItem: React.FC<CartItemProps> = ({ id, title, price, type, count, size }) => {
+const Cartitem: React.FC<CartitemProps> = ({ id, title, price, type, count, size }) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {
-    dispatch(addItem({id} as CartItemType));
+    dispatch(additem({ id } as CartitemType));
   };
 
   const onClickMinus = () => {
     if (count > 1) {
-      dispatch(minusItem(id));
+      dispatch(minusitem(id));
     }
   };
 
   const onClickRemove = () => {
     if (window.confirm('Are you sure you want to remove?')) {
-      dispatch(removeItem(id));
+      dispatch(removeitem(id));
     }
   };
   return (
     <div className="content__items">
       <div className="cart__item">
         <div className="cart__item-img">
-          <img className="pizza-block__image" src="https://gdr.one/simg/128" alt="Pizza" />
+          <img className="item-block__image" src="https://gdr.one/simg/128" alt="item" />
         </div>
 
         <div className="cart__item-info">
@@ -110,4 +110,4 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, price, type, count, size
   );
 };
 
-export default CartItem;
+export default Cartitem;

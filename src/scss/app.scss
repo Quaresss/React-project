@@ -3,7 +3,8 @@
 @import './components/all';
 
 body {
-  background-color: $background;
+  background-image: $background;
+  
 }
 
 .wrapper {
@@ -134,10 +135,8 @@ body {
       }
     }
   }
-  .content__items{
+  .content__items {
     display: block;
-
-
   }
 
   &__item {
@@ -183,7 +182,6 @@ body {
       align-items: center;
       justify-content: space-between;
       width: 13%;
-      
 
       &-minus {
         svg {
@@ -197,12 +195,8 @@ body {
         font-size: 22px;
       }
 
-      .button_disabled{
-        
-          pointer-events: none;
-        
-       
-        
+      .button_disabled {
+        pointer-events: none;
       }
     }
 
