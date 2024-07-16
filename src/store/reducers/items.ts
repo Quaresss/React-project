@@ -2,7 +2,6 @@ const FETCH_itemS_REQUEST = 'items/fetchitemsRequest';
 const FETCH_itemS_SUCCESS = 'items/fetchitemsSuccess';
 const FETCH_itemS_FAILURE = 'items/fetchitemsFailure';
 
-// Interfaces and Types
 interface item {
   id: number;
   title: string;
@@ -16,7 +15,7 @@ interface item {
 enum Status {
   LOADING = 'loading',
   SUCCESS = 'success',
-  ERROR = 'error',
+  ERROR = 'error'
 }
 
 interface itemsState {
@@ -37,32 +36,38 @@ interface FetchitemsFailureAction {
   type: typeof FETCH_itemS_FAILURE;
 }
 
-type itemsActionTypes = FetchitemsRequestAction | FetchitemsSuccessAction | FetchitemsFailureAction;
+type itemsActionTypes =
+  | FetchitemsRequestAction
+  | FetchitemsSuccessAction
+  | FetchitemsFailureAction;
 
 const initialState: itemsState = {
   items: [],
-  status: Status.LOADING,
+  status: Status.LOADING
 };
 
-const itemsReducer = (state = initialState, action: itemsActionTypes): itemsState => {
+const itemsReducer = (
+  state = initialState,
+  action: itemsActionTypes
+): itemsState => {
   switch (action.type) {
     case FETCH_itemS_REQUEST:
       return {
         ...state,
         status: Status.LOADING,
-        items: [],
+        items: []
       };
     case FETCH_itemS_SUCCESS:
       return {
         ...state,
         status: Status.SUCCESS,
-        items: action.payload,
+        items: action.payload
       };
     case FETCH_itemS_FAILURE:
       return {
         ...state,
         status: Status.ERROR,
-        items: [],
+        items: []
       };
     default:
       return state;

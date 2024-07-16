@@ -1,0 +1,24 @@
+//@ts-nocheck
+
+const initialState = {
+  isLoggedIn: false
+};
+//@ts-ignore
+const authReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'LOGIN_SUCCESS':
+      return {
+        ...state,
+        isLoggedIn: true
+      };
+    case 'LOGOUT_SUCCESS':
+      return {
+        ...state,
+        isLoggedIn: false
+      };
+    default:
+      return state;
+  }
+};
+
+export default authReducer;

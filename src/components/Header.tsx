@@ -1,41 +1,90 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../src/store/store';
-
+import { logoutSuccess } from '../store/actions/auth';
 import Search from './Search';
 
 const Header: React.FC = ({}) => {
+  const dispatch = useDispatch();
   const { totalPrice, items } = useSelector((state: RootState) => state.cart);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const totalCount = items.reduce(
+    (sum: number, item: any) => sum + item.count,
+    0
+  );
 
-  const totalCount = items.reduce((sum: any, item: any) => sum + item.count, 0);
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+    alert('Вы вышли из аккаунта');
+    navigate('/');
+  };
 
-  const isMounted = React.useRef(false);
+  React.useEffect(() => {
+    const json = JSON.stringify(items);
+    localStorage.setItem('cart', json);
+  }),
+    [];
 
   return (
     <div className="header">
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" />
+            <img
+              width="38"
+              src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+            />
             <div>
               <h1>Магазин</h1>
             </div>
           </div>
         </Link>
-        {pathname !== '/cart' && <Search />}
+
+        {!(
+          pathname === '/cart' ||
+          pathname === '/register' ||
+          pathname === '/login'
+        ) && <Search />}
+        {!(
+          pathname === '/cart' ||
+          pathname === '/register' ||
+          pathname === '/login'
+        ) && (
+          <Link to="/register">
+            <button className="button pay-btn">Регистрация</button>
+          </Link>
+        )}
+
+        {!(
+          pathname === '/cart' ||
+          pathname === '/register' ||
+          pathname === '/login'
+        ) &&
+          (isLoggedIn ? (
+            <button className="button pay-btn" onClick={handleLogout}>
+              Выйти
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="button pay-btn">Войти</button>
+            </Link>
+          ))}
         {pathname !== '/cart' && (
           <div className="header__cart">
             <Link to="/cart" className="button button--cart">
               <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
+
               <svg
                 width="18"
                 height="18"
                 viewBox="0 0 18 18"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="M6.33333 16.3333C7.06971 16.3333 7.66667 15.7364 7.66667 15C7.66667 14.2636 7.06971 13.6667 6.33333 13.6667C5.59695 13.6667 5 14.2636 5 15C5 15.7364 5.59695 16.3333 6.33333 16.3333Z"
                   stroke="white"

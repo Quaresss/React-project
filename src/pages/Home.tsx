@@ -4,7 +4,6 @@ import type { RootState } from '../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId } from '../store/actions/filter';
 import { fetchitems } from '../store/actions/items';
-
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import Card from '../components/Item';
@@ -19,7 +18,9 @@ const Home: React.FC = () => {
   const { search } = useSelector((state: RootState) => state.search);
   const sortType = sort.sortProperty;
 
-  const skeleton = [...new Array(10)].map((_, index) => <Skeleton key={index} />);
+  const skeleton = [...new Array(10)].map((_, index) => (
+    <Skeleton key={index} />
+  ));
   const item = items.map((obj: itemsProps) => <Card {...obj} key={obj.id} />);
 
   const onChangeCategory = React.useCallback((id: number) => {
@@ -35,8 +36,8 @@ const Home: React.FC = () => {
       fetchitems({
         category,
         searchitems,
-        sortType,
-      }),
+        sortType
+      })
     );
 
     window.scrollTo(0, 0);
@@ -56,17 +57,24 @@ const Home: React.FC = () => {
     rating: number;
   };
 
-  console.log(items);
-
   return (
     <div className="container">
       <div className="content__top">
-        <Categories value={categoryId} onChangeCategory={(id) => onChangeCategory(id)} />
+        <Categories
+          value={categoryId}
+          onChangeCategory={(id) => onChangeCategory(id)}
+        />
         <Sort />
       </div>
       <h2 className="content__title">Все товары</h2>
       <div className="content__items">
-        {status === 'error' ? <NotFound /> : status === 'loading' ? skeleton : item}
+        {status === 'error' ? (
+          <NotFound />
+        ) : status === 'loading' ? (
+          skeleton
+        ) : (
+          item
+        )}
       </div>
     </div>
   );

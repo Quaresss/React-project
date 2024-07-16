@@ -16,7 +16,7 @@ export interface itemsState {
 export enum Status {
   LOADING = 'loading',
   SUCCESS = 'success',
-  ERROR = 'error',
+  ERROR = 'error'
 }
 
 export const FETCH_itemS_REQUEST = 'FETCH_itemS_REQUEST';

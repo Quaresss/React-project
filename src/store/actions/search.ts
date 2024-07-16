@@ -21,18 +21,21 @@ interface ClearSearchAction {
   type: typeof CLEAR_SEARCH;
 }
 
-export type SearchActionTypes = SetSearchAction | SetUpdateAction | ClearSearchAction;
+export type SearchActionTypes =
+  | SetSearchAction
+  | SetUpdateAction
+  | ClearSearchAction;
 
 export const setSearch = (search: string) => ({
   type: SET_SEARCH,
-  payload: search,
+  payload: search
 });
 
 export const setUpdate = (update: string) => ({
   type: SET_UPDATE,
-  payload: update,
+  payload: update
 });
 
 export const clearSearch = () => ({
-  type: CLEAR_SEARCH,
+  type: CLEAR_SEARCH
 });

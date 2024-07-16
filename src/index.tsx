@@ -4,8 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App';
-// import { store } from './redux/store';
-import store from './store/store'
+import store from './store/store';
 
 const rootElem = document.getElementById('root');
 
@@ -16,6 +15,6 @@ if (rootElem) {
       <Provider store={store}>
         <App />
       </Provider>
-    </BrowserRouter>,
+    </BrowserRouter>
   );
 }

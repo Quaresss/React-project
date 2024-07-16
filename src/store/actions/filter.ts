@@ -18,12 +18,12 @@ interface SetSortAction {
 
 export type FilterActionTypes = SetCategoryIdAction | SetSortAction;
 
-export const setCategoryId = (categoryId: number)=> ({
+export const setCategoryId = (categoryId: number) => ({
   type: SET_CATEGORY_ID,
-  payload: categoryId,
+  payload: categoryId
 });
 
 export const setSort = (sort: SortObj) => ({
   type: SET_SORT,
-  payload: sort,
+  payload: sort
 });

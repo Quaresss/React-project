@@ -1,5 +1,5 @@
-import { getCartFromLS } from '../../utils/getCartFromLS';
-
+import { getCartFromLS } from '@utils/getCartFromLS';
+import { calcTotalPrice } from '@utils/calcTotalPrice';
 import { CartActionTypes } from '../actions/cart';
 
 export interface CartState {
@@ -16,9 +16,11 @@ export type CartitemType = {
   count: number;
 };
 
+const { items, totalPrice } = getCartFromLS();
+
 const initialState: CartState = {
-  totalPrice: 0,
-  items: getCartFromLS(),
+  totalPrice,
+  items
 };
 
 const ADD_item = 'cart/additem';
@@ -26,7 +28,10 @@ const MINUS_item = 'cart/minusitem';
 const REMOVE_item = 'cart/removeitem';
 const CLEAR_item = 'cart/clearitem';
 
-const cartReducer = (state = initialState, action: CartActionTypes): CartState => {
+const cartReducer = (
+  state = initialState,
+  action: CartActionTypes
+): CartState => {
   switch (action.type) {
     case ADD_item:
       const finditem = state.items.find((obj) => obj.id === action.payload.id);
@@ -37,13 +42,13 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
         state.items.push({ ...action.payload, count: 1 });
       }
 
-      state.totalPrice = state.items.reduce((sum, obj) => {
-        return obj.price * obj.count + sum;
-      }, 0);
+      state.totalPrice = calcTotalPrice(state.items);
       return { ...state };
 
     case MINUS_item:
-      const finditemMinus = state.items.find((obj) => obj.id === action.payload);
+      const finditemMinus = state.items.find(
+        (obj) => obj.id === action.payload
+      );
 
       if (finditemMinus) {
         finditemMinus.count--;
@@ -71,7 +76,4 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
   }
 };
 
-// Export reducer as default
 export default cartReducer;
-
-// Action type union

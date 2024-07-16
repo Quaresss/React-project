@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Fullitem: React.FC = () => {
   const [item, setitem] = React.useState<{
@@ -14,7 +14,9 @@ const Fullitem: React.FC = () => {
   React.useEffect(() => {
     async function fetchitem() {
       try {
-        const { data } = await axios.get('https://847c80a9e47a2b52.mokky.dev/items/' + id);
+        const { data } = await axios.get(
+          'https://847c80a9e47a2b52.mokky.dev/items/' + id
+        );
         setitem(data);
       } catch (err) {
         alert('Error fetching item');
@@ -24,16 +26,19 @@ const Fullitem: React.FC = () => {
     fetchitem();
   }, []);
 
-  console.log(item);
-
   if (!item) {
-    return 'загрузка';
+    return 'Загрузка';
   }
 
   return (
     <div className="container">
       <h2>{item.title}</h2>
-      <h4>{item.price}</h4>
+      <h4>{item.price} руб.</h4>
+      <Link to="/">
+        <button className="button button--outline button--add">
+          <span>Назад</span>
+        </button>
+      </Link>
     </div>
   );
 };

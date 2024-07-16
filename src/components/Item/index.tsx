@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CartItemType, additem } from '../../store/actions/cart';
-import type { RootState } from '../../redux/store';
+import type { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
 
 type itemProps = {
@@ -20,16 +20,14 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
   const size = ['Размер №1', 'Размер №2', 'Размер №3'];
 
   const cartitem = useSelector((state: RootState) =>
-    state.cart.items.find((obj: any) => {
+    state.cart.items.find((obj: CartItemType) => {
       obj.id === id;
-    }),
+    })
   );
 
   const dispatch = useDispatch();
 
   const addedCount = cartitem ? cartitem.count : 0;
-
-  console.log(cartitem);
 
   const onClickAdd = () => {
     const item: CartItemType = {
@@ -38,7 +36,7 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
       price,
       type: type[activeTypes],
       size: size[activeSizes],
-      count: 0,
+      count: 0
     };
     dispatch(additem(item));
   };
@@ -59,7 +57,8 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
                 onClick={() => {
                   setActiveTypes(i);
                 }}
-                className={activeTypes === i ? 'active' : ''}>
+                className={activeTypes === i ? 'active' : ''}
+              >
                 {type[i]}
               </li>
             ))}
@@ -69,7 +68,8 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
               <li
                 key={i}
                 onClick={() => setActiveSizes(i)}
-                className={activeSizes === i ? 'active' : ''}>
+                className={activeSizes === i ? 'active' : ''}
+              >
                 {size[i]}
               </li>
             ))}
@@ -77,13 +77,17 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
         </div>
         <div className="item-block__bottom">
           <div className="item-block__price">{price} руб.</div>
-          <div onClick={onClickAdd} className="button button--outline button--add">
+          <div
+            onClick={onClickAdd}
+            className="button button--outline button--add"
+          >
             <svg
               width="12"
               height="12"
               viewBox="0 0 12 12"
               fill="none"
-              xmlns="http://www.w3.org/2000/svg">
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
                 fill="white"
