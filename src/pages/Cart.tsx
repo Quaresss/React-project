@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearitem } from '../store/actions/cart';
+import { clearItem } from '../store/actions/cart';
 import type { RootState } from '../../src/store/store';
 
 import CartItem from '../components/CartItem';
@@ -9,12 +9,15 @@ import CartEmpty from '../components/CartEmpty';
 
 const Cart: React.FC = () => {
   const { totalPrice, items } = useSelector((state: RootState) => state.cart);
-  const totalCount = items.reduce((sum: any, item: any) => sum + item.count, 0);
+  const totalCount = items.reduce(
+    (sum: number, item: any) => sum + item.count,
+    0
+  );
   const dispatch = useDispatch();
 
   const onClickClear = () => {
-    if (window.confirm('Are you sure you want to remove?')) {
-      dispatch(clearitem());
+    if (window.confirm('Вы уверены, что хотитие удалить все товары?')) {
+      dispatch(clearItem());
     }
   };
 
@@ -139,9 +142,11 @@ const Cart: React.FC = () => {
 
                   <span>Вернуться назад</span>
                 </Link>
-                <div className="button pay-btn">
-                  <span>Оплатить сейчас</span>
-                </div>
+                <Link to="/confirm">
+                  <div className="button pay-btn">
+                    <span onClick={()=>{dispatch(clearItem())}}>Оплатить сейчас</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

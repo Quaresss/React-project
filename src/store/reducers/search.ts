@@ -4,7 +4,7 @@ import {
   SET_UPDATE,
   CLEAR_SEARCH,
   SearchState
-} from '../actions/search';
+} from '@store/types/search';
 
 const initialState: SearchState = {
   search: '',

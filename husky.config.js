@@ -1,7 +1,5 @@
 module.exports = {
     hooks: {
-        'pre-commit': 'npm run format',
-
-
+        'pre-commit': "eslint 'src/**/*.{js,jsx,ts,tsx}",
     },
 };

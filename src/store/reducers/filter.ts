@@ -2,13 +2,8 @@ import {
   FilterActionTypes,
   SET_CATEGORY_ID,
   SET_SORT,
-  SortObj
-} from '../actions/filter';
-
-export interface FilterState {
-  categoryId: number;
-  sort: SortObj;
-}
+  FilterState
+} from '@store/types/filter';
 
 const initialState: FilterState = {
   categoryId: 0,

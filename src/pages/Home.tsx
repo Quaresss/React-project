@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { RootState } from '../store/store';
+import type { RootState, AppDispatch } from '../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId } from '../store/actions/filter';
 import { fetchitems } from '../store/actions/items';
@@ -11,7 +11,7 @@ import Skeleton from '../components/Item/Skeleton';
 import NotFound from './NotFound';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { categoryId, sort } = useSelector((state: RootState) => state.filter);
   const { items, status } = useSelector((state: RootState) => state.items);
@@ -49,9 +49,9 @@ const Home: React.FC = () => {
 
   type itemsProps = {
     id: number;
+    img: string
     title: string;
     types: Array<number>;
-    sizes: Array<number>;
     price: number;
     category: number;
     rating: number;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../store/store';
+import type { RootState, AppDispatch } from '../store/store';
 import { setSort } from '../store/actions/filter';
 
 type Sortitem = {
@@ -10,7 +10,7 @@ type Sortitem = {
 
 const Sort: React.FC = React.memo(() => {
   const [open, setOpen] = React.useState<Boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { sort } = useSelector((state: RootState) => state.filter);
 
   const handlePopupSort = (obj: Sortitem) => {

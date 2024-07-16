@@ -1,43 +1,31 @@
-const ADD_item = 'cart/additem';
-const MINUS_item = 'cart/minusitem';
-const REMOVE_item = 'cart/removeitem';
-const CLEAR_item = 'cart/clearitem';
+const ADD_ITEM = 'cart/additem';
+const MINUS_ITEM = 'cart/minusitem';
+const REMOVE_ITEM = 'cart/removeitem';
+const CLEAR_ITEM = 'cart/clearitem';
 
-export type CartItemType = {
-  id: number;
-  title: string;
-  type: string;
-  size: string;
-  price: number;
-  count: number;
-};
+import { CartItemType } from '@store/types/cart';
 
-export interface CartState {
-  totalPrice: number;
-  items: CartItemType[];
-}
-
-export const additem = (item: CartItemType) => ({
-  type: ADD_item as typeof ADD_item,
+export const addItem = (item: CartItemType) => ({
+  type: ADD_ITEM as typeof ADD_ITEM,
   payload: item
 });
 
-export const minusitem = (itemId: number) => ({
-  type: MINUS_item as typeof MINUS_item,
+export const minusItem = (itemId: number) => ({
+  type: MINUS_ITEM as typeof MINUS_ITEM,
   payload: itemId
 });
 
-export const removeitem = (itemId: number) => ({
-  type: REMOVE_item as typeof REMOVE_item,
+export const removeItem = (itemId: number) => ({
+  type: REMOVE_ITEM as typeof REMOVE_ITEM,
   payload: itemId
 });
 
-export const clearitem = () => ({
-  type: CLEAR_item as typeof CLEAR_item
+export const clearItem = () => ({
+  type: CLEAR_ITEM as typeof CLEAR_ITEM
 });
 
 export type CartActionTypes =
-  | ReturnType<typeof additem>
-  | ReturnType<typeof minusitem>
-  | ReturnType<typeof removeitem>
-  | ReturnType<typeof clearitem>;
+  | ReturnType<typeof addItem>
+  | ReturnType<typeof minusItem>
+  | ReturnType<typeof removeItem>
+  | ReturnType<typeof clearItem>;

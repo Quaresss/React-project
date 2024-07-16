@@ -1,41 +1,22 @@
-export const SET_SEARCH = 'SET_SEARCH';
-export const SET_UPDATE = 'SET_UPDATE';
-export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+import {
+  SET_SEARCH,
+  SET_UPDATE,
+  CLEAR_SEARCH,
+  SetSearchAction,
+  SetUpdateAction,
+  ClearSearchAction
+} from '@store/types/search';
 
-export interface SearchState {
-  search: string;
-  update: string;
-}
-
-interface SetSearchAction {
-  type: typeof SET_SEARCH;
-  payload: string;
-}
-
-interface SetUpdateAction {
-  type: typeof SET_UPDATE;
-  payload: string;
-}
-
-interface ClearSearchAction {
-  type: typeof CLEAR_SEARCH;
-}
-
-export type SearchActionTypes =
-  | SetSearchAction
-  | SetUpdateAction
-  | ClearSearchAction;
-
-export const setSearch = (search: string) => ({
+export const setSearch = (search: string): SetSearchAction => ({
   type: SET_SEARCH,
   payload: search
 });
 
-export const setUpdate = (update: string) => ({
+export const setUpdate = (update: string): SetUpdateAction => ({
   type: SET_UPDATE,
   payload: update
 });
 
-export const clearSearch = () => ({
+export const clearSearch = (): ClearSearchAction => ({
   type: CLEAR_SEARCH
 });

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../store/actions/auth';
+import { AppDispatch } from '@store/store';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const LoginForm = () => {
     password: ''
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();

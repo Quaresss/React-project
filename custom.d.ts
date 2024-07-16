@@ -6,3 +6,9 @@ declare module '*.module.scss' {
 
 declare module 'lodash.debounce'
 
+declare module "*.svg" {
+  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  export default content;
+}
+
+

@@ -1,10 +1,10 @@
-//@ts-nocheck
+import {AuthActionTypes} from "@store/types/auth"
 
 const initialState = {
   isLoggedIn: false
 };
-//@ts-ignore
-const authReducer = (state = initialState, action) => {
+
+const authReducer = (state = initialState, action:AuthActionTypes) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
       return {

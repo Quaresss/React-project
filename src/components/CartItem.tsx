@@ -1,17 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  CartItemType,
-  additem,
-  minusitem,
-  removeitem
-} from '../store/actions/cart';
+import { CartItemType } from '@store/types/cart';
+import { addItem, minusItem, removeItem } from '@store/actions/cart';
 
-type CartitemProps = {
+export type CartitemProps = {
   id: number;
+  img:string;
   title: string;
   type: Array<number>;
-  size: Array<number>;
+
   price: number;
   category: number;
   rating: number;
@@ -20,29 +17,30 @@ type CartitemProps = {
 
 const Cartitem: React.FC<CartitemProps> = ({
   id,
+  img,
   title,
   price,
   type,
   count,
-  size
+ 
 }) => {
   const dispatch = useDispatch();
 
   const totalPrice = React.useMemo(() => price * count, [price, count]);
 
   const onClickPlus = () => {
-    dispatch(additem({ id } as CartItemType));
+    dispatch(addItem({ id } as CartItemType));
   };
 
   const onClickMinus = () => {
     if (count > 1) {
-      dispatch(minusitem(id));
+      dispatch(minusItem(id));
     }
   };
 
   const onClickRemove = () => {
-    if (window.confirm('Are you sure you want to remove?')) {
-      dispatch(removeitem(id));
+    if (window.confirm('Вы уверены, что хотитие удалить данный товар?')) {
+      dispatch(removeItem(id));
     }
   };
   return (
@@ -51,7 +49,7 @@ const Cartitem: React.FC<CartitemProps> = ({
         <div className="cart__item-img">
           <img
             className="item-block__image"
-            src="https://gdr.one/simg/128"
+            src={img}
             alt="item"
           />
         </div>
@@ -59,7 +57,7 @@ const Cartitem: React.FC<CartitemProps> = ({
         <div className="cart__item-info">
           <h3>{title}</h3>
           <p>
-            {type}, {size}
+            {type}
           </p>
         </div>
         <div className="cart__item-count">

@@ -1,23 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CartItemType, additem } from '../../store/actions/cart';
+import { CartItemType} from '@store/types/cart';
+import { addItem } from '@store/actions/cart';
 import type { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
 
 type itemProps = {
+
   id: number;
+  img: string
   title: string;
   types: Array<number>;
-  sizes: Array<number>;
   price: number;
 };
 
-const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
+const item: React.FC<itemProps> = ({ id, img, title, price, types }) => {
   const [activeTypes, setActiveTypes] = React.useState<number>(0);
-  const [activeSizes, setActiveSizes] = React.useState<number>(0);
 
-  const type = ['Свойство №1', 'Свойство №2', 'Свойство №3'];
-  const size = ['Размер №1', 'Размер №2', 'Размер №3'];
+
+  const type = ['Самовывоз', 'Доставка'];
 
   const cartitem = useSelector((state: RootState) =>
     state.cart.items.find((obj: CartItemType) => {
@@ -32,20 +33,21 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
   const onClickAdd = () => {
     const item: CartItemType = {
       id,
+      img,
       title,
       price,
       type: type[activeTypes],
-      size: size[activeSizes],
+  
       count: 0
     };
-    dispatch(additem(item));
+    dispatch(addItem(item));
   };
 
   return (
     <div className="item-block-wrapper">
       <div className="item-block">
         <Link to={`/items/${id}`}>
-          <img className="item-block__image" src="https://gdr.one/simg/400" />
+          <img className="item-block__image" src={img} />
         </Link>
 
         <h4 className="item-block__title">{title}</h4>
@@ -63,17 +65,7 @@ const item: React.FC<itemProps> = ({ id, title, price, types, sizes }) => {
               </li>
             ))}
           </ul>
-          <ul>
-            {sizes.map((_, i) => (
-              <li
-                key={i}
-                onClick={() => setActiveSizes(i)}
-                className={activeSizes === i ? 'active' : ''}
-              >
-                {size[i]}
-              </li>
-            ))}
-          </ul>
+          
         </div>
         <div className="item-block__bottom">
           <div className="item-block__price">{price} руб.</div>

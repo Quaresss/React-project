@@ -1,9 +1,14 @@
-//@ts-nocheck
+import {
+  LoginSuccessAction,
+  LogoutSuccessAction,
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS
+} from '@store/types/auth';
 
-export const loginSuccess = () => ({
-  type: 'LOGIN_SUCCESS'
+export const loginSuccess = (): LoginSuccessAction => ({
+  type: LOGIN_SUCCESS
 });
 
-export const logoutSuccess = () => ({
-  type: 'LOGOUT_SUCCESS'
+export const logoutSuccess = (): LogoutSuccessAction => ({
+  type: LOGOUT_SUCCESS
 });

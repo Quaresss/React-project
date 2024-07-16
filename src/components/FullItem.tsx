@@ -6,6 +6,7 @@ const Fullitem: React.FC = () => {
   const [item, setitem] = React.useState<{
     title: string;
     price: number;
+    img: string;
   }>();
   const { id } = useParams();
 
@@ -32,6 +33,7 @@ const Fullitem: React.FC = () => {
 
   return (
     <div className="container">
+      <img src={item.img}/>
       <h2>{item.title}</h2>
       <h4>{item.price} руб.</h4>
       <Link to="/">

@@ -1,8 +1,8 @@
 export type item = {
   id: number;
+  img: string;
   title: string;
   types: Array<number>;
-  sizes: Array<number>;
   price: number;
   category: number;
   rating: number;
@@ -19,9 +19,12 @@ export enum Status {
   ERROR = 'error'
 }
 
-export const FETCH_itemS_REQUEST = 'FETCH_itemS_REQUEST';
-export const FETCH_itemS_SUCCESS = 'FETCH_itemS_SUCCESS';
-export const FETCH_itemS_FAILURE = 'FETCH_itemS_FAILURE';
+export const FETCH_itemS_REQUEST = 'items/fetchitemsRequest';
+export const FETCH_itemS_SUCCESS = 'items/fetchitemsSuccess';
+export const FETCH_itemS_FAILURE = 'items/fetchitemsFailure';
+
+
+
 
 interface FetchitemsRequestAction {
   type: typeof FETCH_itemS_REQUEST;

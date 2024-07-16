@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import OrderConfirm from './components/OrderConfirm';
 
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/confirm" element={<OrderConfirm />} />
 
         <Route
           path="cart"

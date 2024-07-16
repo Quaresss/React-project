@@ -15,11 +15,10 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "paths": { 
+    "paths": {
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
-      "@store/*": ["src/store/*"],
-  
+      "@store/*": ["src/store/*"]
     }
   },
   "include": ["src/components", "custom.d.ts"]

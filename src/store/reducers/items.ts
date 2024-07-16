@@ -1,45 +1,11 @@
-const FETCH_itemS_REQUEST = 'items/fetchitemsRequest';
-const FETCH_itemS_SUCCESS = 'items/fetchitemsSuccess';
-const FETCH_itemS_FAILURE = 'items/fetchitemsFailure';
-
-interface item {
-  id: number;
-  title: string;
-  types: number[];
-  sizes: number[];
-  price: number;
-  category: number;
-  rating: number;
-}
-
-enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error'
-}
-
-interface itemsState {
-  items: item[];
-  status: Status;
-}
-
-interface FetchitemsRequestAction {
-  type: typeof FETCH_itemS_REQUEST;
-}
-
-interface FetchitemsSuccessAction {
-  type: typeof FETCH_itemS_SUCCESS;
-  payload: item[];
-}
-
-interface FetchitemsFailureAction {
-  type: typeof FETCH_itemS_FAILURE;
-}
-
-type itemsActionTypes =
-  | FetchitemsRequestAction
-  | FetchitemsSuccessAction
-  | FetchitemsFailureAction;
+import {
+  FETCH_ITEMS_REQUEST,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAILURE,
+  itemsState,
+  ItemsActionTypes,
+  Status
+} from '../../store/types/items';
 
 const initialState: itemsState = {
   items: [],
@@ -48,22 +14,22 @@ const initialState: itemsState = {
 
 const itemsReducer = (
   state = initialState,
-  action: itemsActionTypes
+  action: ItemsActionTypes
 ): itemsState => {
   switch (action.type) {
-    case FETCH_itemS_REQUEST:
+    case FETCH_ITEMS_REQUEST:
       return {
         ...state,
         status: Status.LOADING,
         items: []
       };
-    case FETCH_itemS_SUCCESS:
+    case FETCH_ITEMS_SUCCESS:
       return {
         ...state,
         status: Status.SUCCESS,
         items: action.payload
       };
-    case FETCH_itemS_FAILURE:
+    case FETCH_ITEMS_FAILURE:
       return {
         ...state,
         status: Status.ERROR,

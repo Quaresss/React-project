@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../../src/store/store';
+import type { RootState, AppDispatch } from '../../src/store/store';
 import { logoutSuccess } from '../store/actions/auth';
 import Search from './Search';
 
+
 const Header: React.FC = ({}) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { totalPrice, items } = useSelector((state: RootState) => state.cart);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const { pathname } = useLocation();
@@ -34,11 +35,12 @@ const Header: React.FC = ({}) => {
         <Link to="/">
           <div className="header__logo">
             <img
-              width="38"
-              src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+              width="80"
+              src="/assets/logo.png"
             />
             <div>
-              <h1>Магазин</h1>
+              <h1>Petal Paradise</h1>
+              <p>Интернет-магазин цветов</p>
             </div>
           </div>
         </Link>

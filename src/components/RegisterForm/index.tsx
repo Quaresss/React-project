@@ -46,8 +46,8 @@ const RegisterForm = () => {
             setFormData({ ...formData, password: event.target.value })
           }
         />
-        <button className="button pay-btn" type="submit">
-          Войти
+        <button className="button button--black" type="submit">
+          Зарегистрироваться
         </button>
       </form>
     </div>

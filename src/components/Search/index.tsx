@@ -1,5 +1,5 @@
 import React from 'react';
-import type { RootState } from '../../store/store';
+import type { RootState, AppDispatch } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearch, clearSearch, setUpdate } from '../../store/actions/search';
 import debounce from 'lodash.debounce';
@@ -8,7 +8,7 @@ import styles from './Search.module.scss';
 const Search = () => {
   const { update } = useSelector((state: RootState) => state.search);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const updateSearch = React.useCallback(
     debounce((event: string) => {
