@@ -144,7 +144,13 @@ const Cart: React.FC = () => {
                 </Link>
                 <Link to="/confirm">
                   <div className="button pay-btn">
-                    <span onClick={()=>{dispatch(clearItem())}}>Оплатить сейчас</span>
+                    <span
+                      onClick={() => {
+                        dispatch(clearItem());
+                      }}
+                    >
+                      Оплатить сейчас
+                    </span>
                   </div>
                 </Link>
               </div>

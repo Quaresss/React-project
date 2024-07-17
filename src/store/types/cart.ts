@@ -1,4 +1,3 @@
-
 export type CartItemType = {
   id: number;
   img: string;
@@ -12,6 +11,3 @@ export interface CartState {
   totalPrice: number;
   items: CartItemType[];
 }
-
-
-

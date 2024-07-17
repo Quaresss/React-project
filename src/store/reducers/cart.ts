@@ -1,10 +1,7 @@
 import { getCartFromLS } from '@utils/getCartFromLS';
 import { calcTotalPrice } from '@utils/calcTotalPrice';
 import { CartActionTypes } from '../actions/cart';
-import { CartState} from '@store/types/cart';
-
-
-
+import { CartState } from '@store/types/cart';
 
 const { items, totalPrice } = getCartFromLS();
 
@@ -18,13 +15,12 @@ const MINUS_ITEM = 'cart/minusitem';
 const REMOVE_ITEM = 'cart/removeitem';
 const CLEAR_ITEM = 'cart/clearitem';
 
-
 const cartReducer = (
   state = initialState,
   action: CartActionTypes
 ): CartState => {
   switch (action.type) {
-    case ADD_ITEM :
+    case ADD_ITEM: {
       const finditem = state.items.find((obj) => obj.id === action.payload.id);
 
       if (finditem) {
@@ -35,8 +31,9 @@ const cartReducer = (
 
       state.totalPrice = calcTotalPrice(state.items);
       return { ...state };
+    }
 
-    case MINUS_ITEM:
+    case MINUS_ITEM: {
       const finditemMinus = state.items.find(
         (obj) => obj.id === action.payload
       );
@@ -49,18 +46,21 @@ const cartReducer = (
         return obj.price * obj.count + sum;
       }, 0);
       return { ...state };
+    }
 
-    case REMOVE_ITEM:
+    case REMOVE_ITEM: {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
       state.totalPrice = state.items.reduce((sum, obj) => {
         return obj.price * obj.count + sum;
       }, 0);
       return { ...state };
+    }
 
-    case CLEAR_ITEM:
+    case CLEAR_ITEM: {
       state.items = [];
       state.totalPrice = 0;
       return { ...state };
+    }
 
     default:
       return state;

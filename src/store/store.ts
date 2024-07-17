@@ -1,9 +1,10 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { thunk, ThunkDispatch } from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import rootReducer from './reducers';
 import loggerMiddleware from '../middleware/loggerMiddleware';
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
@@ -11,5 +12,5 @@ const store = createStore(
 );
 
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 export default store;

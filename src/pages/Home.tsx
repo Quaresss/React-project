@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 
   type itemsProps = {
     id: number;
-    img: string
+    img: string;
     title: string;
     types: Array<number>;
     price: number;

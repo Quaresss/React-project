@@ -5,8 +5,7 @@ import type { RootState, AppDispatch } from '../../src/store/store';
 import { logoutSuccess } from '../store/actions/auth';
 import Search from './Search';
 
-
-const Header: React.FC = ({}) => {
+const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { totalPrice, items } = useSelector((state: RootState) => state.cart);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
@@ -34,10 +33,7 @@ const Header: React.FC = ({}) => {
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img
-              width="80"
-              src="/assets/logo.png"
-            />
+            <img loading="lazy" width="80" src="/assets/logo.png" />
             <div>
               <h1>Petal Paradise</h1>
               <p>Интернет-магазин цветов</p>

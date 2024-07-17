@@ -33,7 +33,7 @@ const Fullitem: React.FC = () => {
 
   return (
     <div className="container">
-      <img src={item.img}/>
+      <img loading="lazy" src={item.img} />
       <h2>{item.title}</h2>
       <h4>{item.price} руб.</h4>
       <Link to="/">

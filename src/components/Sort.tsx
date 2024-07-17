@@ -9,7 +9,7 @@ type Sortitem = {
 };
 
 const Sort: React.FC = React.memo(() => {
-  const [open, setOpen] = React.useState<Boolean>(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const { sort } = useSelector((state: RootState) => state.filter);
 

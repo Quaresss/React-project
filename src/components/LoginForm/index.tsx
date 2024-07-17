@@ -24,12 +24,12 @@ const LoginForm = () => {
     event.preventDefault();
     axios
       .post('https://847c80a9e47a2b52.mokky.dev/auth', formData)
-      .then((result) => {
+      .then(() => {
         alert('Успех');
         navigate('/');
         dispatch(loginSuccess());
       })
-      .catch((error) => {
+      .catch(() => {
         alert('Ошибка');
       });
   };

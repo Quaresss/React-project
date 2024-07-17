@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CartItemType} from '@store/types/cart';
+import { CartItemType } from '@store/types/cart';
 import { addItem } from '@store/actions/cart';
 import type { RootState } from '../../store/store';
 import { Link } from 'react-router-dom';
 
 type itemProps = {
-
   id: number;
-  img: string
+  img: string;
   title: string;
   types: Array<number>;
   price: number;
@@ -16,7 +15,6 @@ type itemProps = {
 
 const item: React.FC<itemProps> = ({ id, img, title, price, types }) => {
   const [activeTypes, setActiveTypes] = React.useState<number>(0);
-
 
   const type = ['Самовывоз', 'Доставка'];
 
@@ -37,7 +35,7 @@ const item: React.FC<itemProps> = ({ id, img, title, price, types }) => {
       title,
       price,
       type: type[activeTypes],
-  
+
       count: 0
     };
     dispatch(addItem(item));
@@ -47,7 +45,7 @@ const item: React.FC<itemProps> = ({ id, img, title, price, types }) => {
     <div className="item-block-wrapper">
       <div className="item-block">
         <Link to={`/items/${id}`}>
-          <img className="item-block__image" src={img} />
+          <img loading="lazy" className="item-block__image" src={img} />
         </Link>
 
         <h4 className="item-block__title">{title}</h4>
@@ -65,7 +63,6 @@ const item: React.FC<itemProps> = ({ id, img, title, price, types }) => {
               </li>
             ))}
           </ul>
-          
         </div>
         <div className="item-block__bottom">
           <div className="item-block__price">{price} руб.</div>

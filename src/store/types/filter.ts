@@ -17,8 +17,8 @@ export interface SetSortAction {
 }
 
 export interface FilterState {
-    categoryId: number;
-    sort: SortObj;
-  }
+  categoryId: number;
+  sort: SortObj;
+}
 
 export type FilterActionTypes = SetCategoryIdAction | SetSortAction;

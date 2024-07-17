@@ -23,9 +23,6 @@ export const FETCH_itemS_REQUEST = 'items/fetchitemsRequest';
 export const FETCH_itemS_SUCCESS = 'items/fetchitemsSuccess';
 export const FETCH_itemS_FAILURE = 'items/fetchitemsFailure';
 
-
-
-
 interface FetchitemsRequestAction {
   type: typeof FETCH_itemS_REQUEST;
 }

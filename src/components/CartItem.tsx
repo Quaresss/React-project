@@ -5,7 +5,7 @@ import { addItem, minusItem, removeItem } from '@store/actions/cart';
 
 export type CartitemProps = {
   id: number;
-  img:string;
+  img: string;
   title: string;
   type: Array<number>;
 
@@ -21,8 +21,7 @@ const Cartitem: React.FC<CartitemProps> = ({
   title,
   price,
   type,
-  count,
- 
+  count
 }) => {
   const dispatch = useDispatch();
 
@@ -48,6 +47,7 @@ const Cartitem: React.FC<CartitemProps> = ({
       <div className="cart__item">
         <div className="cart__item-img">
           <img
+            loading="lazy"
             className="item-block__image"
             src={img}
             alt="item"
@@ -56,9 +56,7 @@ const Cartitem: React.FC<CartitemProps> = ({
 
         <div className="cart__item-info">
           <h3>{title}</h3>
-          <p>
-            {type}
-          </p>
+          <p>{type}</p>
         </div>
         <div className="cart__item-count">
           {
