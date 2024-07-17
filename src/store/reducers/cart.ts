@@ -6,7 +6,7 @@ import { CartState } from '@store/types/cart';
 const { items, totalPrice } = getCartFromLS();
 
 const initialState: CartState = {
-  totalPrice,''
+  totalPrice,
   items
 };
 

@@ -1,27 +1,48 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import OrderConfirm from './components/OrderConfirm';
 
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 
 import './scss/app.scss';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
 
 const Cart = React.lazy(() => import('./pages/Cart'));
 const FullItem = React.lazy(() => import('./components/FullItem'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
+const LoginForm = React.lazy(() => import('./components/LoginForm'));
+const RegisterForm = React.lazy(() => import('./components/RegisterForm'));
+const OrderConfirm = React.lazy(() => import('./components/OrderConfirm'));
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/confirm" element={<OrderConfirm />} />
 
+        <Route
+          path="/confirm"
+          element={
+            <React.Suspense fallback={<div>Идёт загрузка...</div>}>
+              <OrderConfirm />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <React.Suspense fallback={<div>Идёт загрузка...</div>}>
+              <LoginForm />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <React.Suspense fallback={<div>Идёт загрузка...</div>}>
+              <RegisterForm />
+            </React.Suspense>
+          }
+        />
         <Route
           path="cart"
           element={

@@ -1,18 +1,16 @@
 const path = require("path");
 
 
-
 module.exports = {
-    mode: "development",
-    entry: path.resolve(__dirname, "src", "index.tsx"),
+    entry: path.resolve(__dirname, "..", "./src/index.tsx"),
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "public"),
+        path: path.resolve(__dirname, "..", "public"),
         publicPath: '/'
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, "public"),
+            directory: path.join(__dirname,"..", "public"),
         },
         port: 3000,
         compress: true,
@@ -36,10 +34,10 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@components': path.resolve(__dirname, 'src/components/'),
-            '@utils': path.resolve(__dirname, 'src/utils/'),
-            '@store': path.resolve(__dirname, 'src/store/'),
-            
+            '@components': path.resolve(__dirname, "..", './src/components/'),
+            '@utils': path.resolve(__dirname, "..", './src/utils/'),
+            '@store': path.resolve(__dirname, "..", './src/store/'),
+
         },
         extensions: [".js", ".jsx", ".ts", ".tsx", ".scss", ".sass", ".css"]
     }
