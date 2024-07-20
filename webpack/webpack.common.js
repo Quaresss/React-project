@@ -1,6 +1,7 @@
 const path = require("path");
 
 
+
 module.exports = {
     entry: path.resolve(__dirname, "..", "./src/index.tsx"),
     output: {
@@ -10,13 +11,15 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname,"..", "public"),
+            directory: path.join(__dirname, "..", "public"),
         },
         port: 3000,
         compress: true,
         historyApiFallback: true
     },
     module: {
+
+
         rules: [
             {
                 test: /\.(ts|tsx)?$/,
@@ -39,6 +42,7 @@ module.exports = {
             '@store': path.resolve(__dirname, "..", './src/store/'),
 
         },
+
         extensions: [".js", ".jsx", ".ts", ".tsx", ".scss", ".sass", ".css"]
     }
 

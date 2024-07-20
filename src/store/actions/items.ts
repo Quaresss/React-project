@@ -16,7 +16,7 @@ export const fetchitems = (params: Record<string, string>) => {
     try {
       const { category, searchitems, sortType } = params;
       const { data } = await axios.get<item[]>(
-        `https://847c80a9e47a2b52.mokky.dev/items?${category}&sortBy=${sortType}${searchitems}`
+        `${process.env.REACT_APP_API_URL}/items?${category}&sortBy=${sortType}${searchitems}`
       );
 
       dispatch({

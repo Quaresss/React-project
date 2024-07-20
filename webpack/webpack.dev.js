@@ -1,4 +1,7 @@
 const webpack = require("webpack");
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 module.exports = {
   mode: "development",
@@ -10,6 +13,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.name": JSON.stringify("development"),
+      'process.env': JSON.stringify(process.env),
+
     }),
   ],
 };
