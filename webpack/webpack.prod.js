@@ -1,13 +1,13 @@
-const webpack = require("webpack");
-const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: "production",
+  mode: 'production',
   devtool: false,
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.name": JSON.stringify("production"),
-    }),
+      'process.env.name': JSON.stringify('production')
+    })
   ],
   optimization: {
     minimize: true,
@@ -19,13 +19,13 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         terserOptions: {
           compress: {
-            drop_console: true,
+            drop_console: true
           },
           output: {
-            comments: false,
-          },
-        },
-      }),
-    ],
-  },
+            comments: false
+          }
+        }
+      })
+    ]
+  }
 };

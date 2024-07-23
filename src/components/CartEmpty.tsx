@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CartEmpty = () => {
   return (
     <>
-      <div className="cart cart--empty">
+      <div className="cart cart--empty ">
         <h2>Корзина пустая</h2>
         <p>
           Вероятней всего, вы не выбрали нужный товар.

@@ -139,7 +139,6 @@ const Cart: React.FC = () => {
                       strokeLinejoin="round"
                     ></path>
                   </svg>
-
                   <span>Вернуться назад</span>
                 </Link>
                 <Link to="/confirm">

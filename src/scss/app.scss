@@ -82,10 +82,12 @@ body {
 }
 
 .cart {
+  
   &__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
   }
 
   .content__title {
@@ -146,6 +148,12 @@ body {
     border-top: 1px solid $gray-line;
     padding-top: 30px;
     margin-top: 30px;
+    
+    @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+      }
+    
 
     &-img {
       display: flex;
@@ -275,8 +283,12 @@ body {
         align-items: center;
         justify-content: center;
         width: 210px;
-
         border-color: darken($color: $gray-line, $amount: 10);
+        @media (max-width: 500px) {
+          width: 5px;
+        }
+  
+        
 
         span {
           color: darken($color: $gray-line, $amount: 20);
@@ -307,13 +319,21 @@ body {
         font-weight: 600;
         width: 210px;
         padding: 16px;
+        @media (max-width: 500px) {
+          width: 100px;
+        }
+        .header__cart {
+          margin-top: 30px;
+        }
+        
+        
       }
     }
   }
 
   &--empty {
     margin: 0 auto;
-    width: 560px;
+    width: 450px;
     text-align: center;
 
     h2 {
